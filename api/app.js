@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+var bodyParser = require("body-parser");
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -10,6 +11,7 @@ var usersRouter = require('./routes/users');
 var testApiRouter = require("./routes/testApi");
 
 var app = express();
+var jsonParser = bodyParser.json();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,5 +43,37 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+app.use(express.static(__dirname + "/public"));
+
+// get countries
+app.get("/api/countries", function(req, res){
+
+  var content = fs.readFileSync("./data/countries.json", "utf8");
+  var countries = JSON.parse(content);
+  res.send(countries);
+});
+// get country by id
+app.get("/api/countries/:id", function(req, res){
+
+  var id = req.params.id; // get id
+  var content = fs.readFileSync("./data/countries.json", "utf8");
+  var countries = JSON.parse(content);
+  var country = null;
+  // find country by id
+  for(var i=0; i<countries.length; i++){
+    if(countries[i].id==id){
+      user = countries[i];
+      break;
+    }
+  }
+  // send country in response
+  if(country){
+    res.send(country);
+  }
+  else{
+    res.status(404).send();
+  }
+});
+
 
 module.exports = app;

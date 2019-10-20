@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Search from "./components/Search/Search";
+import Recomendations from "./components/Recomendations/Recomendations";
 
 class App extends Component {
   constructor(props) {
@@ -20,12 +21,11 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+<div className="App">
+      <Search />
+      <Recomendations />
           <p className="App-intro">{this.state.apiResponse}</p>
-        </header>
-      </div>
+    </div> 
     );
   }
 
