@@ -10,11 +10,12 @@
     "react-scripts": "3.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"node ./bin/www\" \"cd client && npm start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy" : "http://localhost:3005",
   "eslintConfig": {
     "extends": "react-app"
   },

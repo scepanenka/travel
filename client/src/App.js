@@ -11,7 +11,7 @@ class App extends Component {
 
   callAPI() {
     debugger;
-    fetch("http://localhost:5000/testApi")
+    fetch("http://localhost:3005/testApi")
       .then(res => res.text())
       .then(res => this.setState({ apiResponse: res }));
   }

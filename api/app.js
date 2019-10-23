@@ -48,7 +48,7 @@ app.use(express.static(__dirname + "/public"));
 // get countries
 app.get("/api/countries", function(req, res){
 
-  var content = fs.readFileSync("./data/countries.json", "utf8");
+  var content = fs.readFileSync("./models/countries.json", "utf8");
   var countries = JSON.parse(content);
   res.send(countries);
 });
@@ -56,7 +56,7 @@ app.get("/api/countries", function(req, res){
 app.get("/api/countries/:id", function(req, res){
 
   var id = req.params.id; // get id
-  var content = fs.readFileSync("./data/countries.json", "utf8");
+  var content = fs.readFileSync("./models/countries.json", "utf8");
   var countries = JSON.parse(content);
   var country = null;
   // find country by id
