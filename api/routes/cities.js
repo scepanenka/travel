@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-const countriesService = require('../controllers/countries');
+const citiesService = require('../controllers/cities');
 
 router.route('/')
-  .get(countriesService.getAll);
+  .get(citiesService.getAll);
 
 router.route('/:id')
-  .get(countriesService.get);
+  .get(citiesService.get);
 
 module.exports = router;

@@ -1,8 +1,14 @@
-import {readFileSync} from "fs";
+import countriesService from "../services/countries";
 
-const getCountries = (res,req) => {
-  const content = readFileSync("./models/countries.json", "utf8");
-  const countries = JSON.parse(content);
-  res.send(countries);
+const get = function(req, res){
+  res.send(countriesService.get(req.params.id))
 };
-)
+
+const getAll = function(req, res){
+  res.send(countriesService.getAll())
+};
+
+module.exports = {
+  get,
+  getAll
+};
