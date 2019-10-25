@@ -1,17 +1,12 @@
-var createError = require('http-errors');
-var express = require('express');
-var bodyParser = require("body-parser");
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var cors = require("cors");
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const cors = require("cors");
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var testApiRouter = require("./routes/testApi");
-
-var app = express();
-var jsonParser = bodyParser.json();
+const routes = require('./routes/index');
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,9 +19,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use("/testApi", testApiRouter);
+app.get('/', (req, res) => res.send('Hello World!'));
+app.use(routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -44,36 +38,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 app.use(express.static(__dirname + "/public"));
-
-// get countries
-app.get("/api/countries", function(req, res){
-
-  var content = fs.readFileSync("./models/countries.json", "utf8");
-  var countries = JSON.parse(content);
-  res.send(countries);
-});
-// get country by id
-app.get("/api/countries/:id", function(req, res){
-
-  var id = req.params.id; // get id
-  var content = fs.readFileSync("./models/countries.json", "utf8");
-  var countries = JSON.parse(content);
-  var country = null;
-  // find country by id
-  for(var i=0; i<countries.length; i++){
-    if(countries[i].id==id){
-      user = countries[i];
-      break;
-    }
-  }
-  // send country in response
-  if(country){
-    res.send(country);
-  }
-  else{
-    res.status(404).send();
-  }
-});
-
 
 module.exports = app;

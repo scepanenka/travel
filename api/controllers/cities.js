@@ -1,4 +1,4 @@
-import citiesService from "../services/cities";
+const citiesService = require('../services/cities');
 
 const get = function(req, res){
   res.send(citiesService.get(req.params.id))

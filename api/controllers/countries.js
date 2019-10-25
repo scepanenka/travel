@@ -1,4 +1,4 @@
-import countriesService from "../services/countries";
+const countriesService = require('../services/countries');
 
 const get = function(req, res){
   res.send(countriesService.get(req.params.id))
