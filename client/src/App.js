@@ -1,20 +1,31 @@
 import React, { Component } from 'react';
 import './App.css';
-import Search from "./components/Search/Search";
-import Recomendations from "./components/Recomendations/Recomendations";
+import Search from "./components/Search";
+import Recomendations from "./components/Recomendations";
+import Cities from "./components/Cities";
+
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { apiResponse: "" };
+    this.state = {
+      countries: [],
+      cities: []
+    };
   }
 
   callAPI() {
-    debugger;
-    fetch("http://localhost:3005/testApi")
-      .then(res => res.text())
-      .then(res => this.setState({ apiResponse: res }));
+    fetch("http://localhost:3005/countries")
+      .then(res => res.json())
+      .then(data => this.setState( {countries: data})
+      ).catch(console.log);
+    fetch("http://localhost:3005/cities")
+      .then(res => res.json())
+      .then(data => this.setState( {cities: data})
+      ).catch(console.log);
   }
+
+
 
   componentWillMount() {
     this.callAPI();
@@ -22,10 +33,12 @@ class App extends Component {
   render() {
     return (
 <div className="App">
-      <Search />
-      <Recomendations />
-          <p className="App-intro">{this.state.apiResponse}</p>
-    </div> 
+  <div className="container">
+    <Search />
+    <Recomendations />
+    <Cities state={this.state}/>
+  </div>
+</div>
     );
   }
 

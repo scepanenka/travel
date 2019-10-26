@@ -51,5 +51,21 @@ module.exports = {
       "countryId":4,
       "name":"Athens"
     }
+  ],
+  Places: [
+    {
+      "id":1,
+      "cityId":1,
+      "name":"Kolozha Church",
+      "imgUrl": "https://www.belarus.by/dadvimages/001516_799657.jpg",
+      "Description": "Sts Boris and Gleb Church (Kolozha Church) is an architectural pearl of ancient Grodno, a unique specimen of Eastern Orthodox architecture in Belarus and entire Eastern Europe."
+    },
+    {
+      "id":2,
+      "cityId":1,
+      "name":"St. Francis Xavier (Farny) Cathedral",
+      "imgUrl": "http://www.belarus.by/dadvimages/s001536_257064.jpg",
+      "Description": "This magnificent cathedral is certainly a landmark of the ancient city."
+    },
   ]
 };

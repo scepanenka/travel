@@ -5,7 +5,7 @@ const get = function(req, res){
 };
 
 const getAll = function(req, res){
-  res.send(countriesService.getAll())
+  res.json(countriesService.getAll())
 };
 
 module.exports = {
