@@ -3,8 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import store from './store'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+
+export let renderEntireTree = (state) => {
+  ReactDOM.render(<App state={state}
+                       store={store}
+    />,
+    document.getElementById('root'));
+};
+
+renderEntireTree(store.getState());
+
+store.subscribe(() => {
+  let state = store.getState();
+  renderEntireTree(state);
+});
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

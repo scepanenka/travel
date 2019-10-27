@@ -1,47 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import Search from "./components/Search";
 import Recomendations from "./components/Recomendations";
-import Cities from "./components/Cities";
+import Cities from "./components/Cities/";
+import {BrowserRouter, Route} from "react-router-dom";
 
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      countries: [],
-      cities: []
-    };
-  }
-
-  callAPI() {
-    fetch("http://localhost:3005/countries")
-      .then(res => res.json())
-      .then(data => this.setState( {countries: data})
-      ).catch(console.log);
-    fetch("http://localhost:3005/cities")
-      .then(res => res.json())
-      .then(data => this.setState( {cities: data})
-      ).catch(console.log);
-  }
-
-
-
-  componentWillMount() {
-    this.callAPI();
-  }
-  render() {
+let App = (props) => {
+  let state=props.state;
     return (
-<div className="App">
-  <div className="container">
-    <Search />
-    <Recomendations />
-    <Cities state={this.state}/>
-  </div>
-</div>
+      <BrowserRouter>
+        <div className="App">
+          <div className="container">
+            <Search/>
+            <Recomendations/>
+            <Cities state={state} />
+          </div>
+        </div>
+      </BrowserRouter>
     );
-  }
+};
 
-}
+
+
 
 export default App;

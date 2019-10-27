@@ -7,7 +7,7 @@ const Recomendations = () => {
       <div className="card-body">
         <h5 className="card-title">Recomendation</h5>
         <div className={s.pic}>
-          <img className="card-img" src="https://www.planetware.com/photos-large/F/france-paris-eiffel-tower.jpg" alt=""/>
+          <img className="card-img" src="https://www.belarus.by/dadvimages/001516_799657.jpg" alt=""/>
         </div>
       </div>
     </div>
